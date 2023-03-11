@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
-import { loader as cartsLoader } from "./components/List/CartList";
+import { loader as cartsLoader } from "./components/Main";
 import CartDetails from "./components/Details/CartDetails";
 
 const router = createBrowserRouter([

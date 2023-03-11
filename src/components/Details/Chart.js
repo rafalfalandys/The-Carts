@@ -1,6 +1,6 @@
 import classes from "./Chart.module.scss";
 
-function Chart() {
+function Chart(props) {
   return (
     <div className={classes.chart}>
       <h2>Click on one of the carts to display the products price chart</h2>

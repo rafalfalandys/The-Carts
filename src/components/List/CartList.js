@@ -1,13 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
-import { URL } from "../../config";
+import { useState } from "react";
 import CartCard from "./CartCard";
 import classes from "./CartList.module.scss";
 
-function CartList() {
-  const loaderData = useLoaderData();
-  console.log(loaderData[0]);
-  const [carts, setCarts] = useState(loaderData);
+function CartList(props) {
+  const [carts, setCarts] = useState(props.carts);
 
   const cartsList = carts.map((cart) => (
     <CartCard
@@ -24,12 +20,3 @@ function CartList() {
 }
 
 export default CartList;
-
-export const loader = async () => {
-  const res = await fetch(URL);
-  if (!res.ok) throw new Error("Could not fetch carts data");
-
-  const data = await res.json();
-
-  return data.carts;
-};

@@ -1,0 +1,10 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.products {
+  @include details-wrapper;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+}

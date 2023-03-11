@@ -1,0 +1,11 @@
+@mixin details-wrapper {
+  background-color: $color-white;
+  height: 100%;
+  border-radius: $border-radius;
+  padding: 3rem;
+  margin-right: $grid-gap;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

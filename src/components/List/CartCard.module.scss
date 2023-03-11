@@ -1,0 +1,56 @@
+@import "../../styles/variables";
+
+.cart {
+  display: grid;
+  grid-template-columns: 1fr 6.5rem;
+  background-color: $color-white;
+  padding: 1rem;
+  border-radius: $border-radius;
+  cursor: pointer;
+  min-width: 17rem;
+
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 3px 3px $color-shadow;
+  }
+
+  & p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.price {
+  grid-column: -2 / -1;
+  grid-row: 1 / 4;
+
+  background-color: $color-base-light;
+  aspect-ratio: 1;
+  border-radius: 10rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 700;
+
+  position: relative;
+}
+
+.total {
+  color: red;
+  text-decoration: line-through;
+
+  &-discount {
+    font-size: $font-medium;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}

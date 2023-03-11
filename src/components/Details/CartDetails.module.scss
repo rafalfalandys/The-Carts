@@ -1,0 +1,8 @@
+@import "../../styles/variables";
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: $grid-gap;
+}

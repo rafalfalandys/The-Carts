@@ -1,0 +1,8 @@
+@import "../styles/variables";
+
+.main {
+  max-width: 150rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin: auto;
+}

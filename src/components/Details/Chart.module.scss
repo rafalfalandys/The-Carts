@@ -1,0 +1,8 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.chart {
+  @include details-wrapper;
+
+  text-align: center;
+}

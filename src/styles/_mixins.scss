@@ -1,6 +1,5 @@
 @mixin details-wrapper {
   background-color: $color-white;
-  height: 100%;
   border-radius: $border-radius;
   padding: 3rem 2rem;
   margin-right: $grid-gap;
@@ -9,4 +8,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+@mixin details-placeholder {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+@mixin details-header {
+  display: flex;
+  font-size: $font-medium;
+  justify-content: center;
+  align-items: center;
 }

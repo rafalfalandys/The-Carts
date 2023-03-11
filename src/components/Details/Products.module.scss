@@ -6,14 +6,9 @@
 }
 
 .placeholder {
-  text-align: center;
-  display: flex;
-  align-items: center;
+  @include details-placeholder;
 }
 
 .header {
-  display: flex;
-  font-size: $font-medium;
-  justify-content: center;
-  align-items: center;
+  @include details-header;
 }

@@ -2,10 +2,11 @@
   background-color: $color-white;
   height: 100%;
   border-radius: $border-radius;
-  padding: 3rem;
+  padding: 3rem 2rem;
   margin-right: $grid-gap;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }

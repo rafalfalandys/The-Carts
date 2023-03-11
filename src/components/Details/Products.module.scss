@@ -11,35 +11,9 @@
   align-items: center;
 }
 
-table {
-  width: 100%;
+.header {
+  display: flex;
   font-size: $font-medium;
-}
-
-th {
-  text-align: start;
-  padding: 1rem 0;
-}
-
-.two,
-.three,
-.four {
-  width: 5.5rem;
-}
-
-.five {
-  width: 8rem;
-}
-.six {
-  width: 7rem;
-}
-
-td {
-  padding: 0.7rem 0;
-}
-
-.total {
-  font-weight: 700;
-  font-size: $font-large;
-  padding: 1rem 0;
+  justify-content: center;
+  align-items: center;
 }

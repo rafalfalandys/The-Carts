@@ -1,12 +1,18 @@
+import { Link, useParams } from "react-router-dom";
 import classes from "./CartCard.module.scss";
-import { Link } from "react-router-dom";
 
 function CartCard(props) {
+  const params = useParams();
   const discount = props.total - props.discountedTotal;
+
+  const isActive = +params.cartId === props.id;
 
   return (
     <li>
-      <Link to={`${props.id}`} className={classes.cart}>
+      <Link
+        to={`${props.id}`}
+        className={`${classes.cart} ${isActive ? classes.active : ""}`}
+      >
         <header className={classes.header}>
           <ion-icon name="cart-outline" size="small" />
           <h2> &nbsp;Cart {props.id}</h2>

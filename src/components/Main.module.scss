@@ -5,4 +5,8 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin: auto;
+
+  @media (max-width: $break-tablet) {
+    grid-template-columns: 1fr 3fr;
+  }
 }

@@ -10,8 +10,8 @@ function CartDetails(props) {
 
   return (
     <div className={classes.details}>
-      <Products cart={cart} />
       <Chart cart={cart} />
+      <Products cart={cart} />
     </div>
   );
 }

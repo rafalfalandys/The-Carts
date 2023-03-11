@@ -5,4 +5,8 @@
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
   margin: 0 $grid-gap 0 $grid-gap;
+
+  @media (max-width: $break-tablet) {
+    grid-template-columns: 1fr;
+  }
 }

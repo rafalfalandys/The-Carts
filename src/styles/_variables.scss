@@ -12,13 +12,19 @@ $color-black: rgb(5, 5, 5);
 
 $color-grey-dark: rgb(70, 70, 70);
 $color-grey: rgb(128, 128, 128);
-$color-grey-light: rgb(180, 180, 180);
+$color-grey-light: rgb(200, 200, 200);
 $color-grey-light-very: rgb(240, 240, 240);
 
 $color-shadow: rgba(0, 0, 0, 0.15);
 
-$color-base-light: rgb(253, 224, 180);
-$color-base: rgb(255, 173, 123);
+// $color-base-light-very: rgb(247, 232, 208);
+// $color-base-light: rgb(253, 224, 180);
+// $color-base: rgb(255, 173, 123);
+$color-base-light-very: rgb(236, 246, 175);
+$color-base-light: rgb(217, 237, 95);
+$color-base: rgb(217, 237, 95);
+
+$color-secondary: rgb(57, 79, 240);
 
 // heights
 $height-header: 6rem;

@@ -15,6 +15,10 @@
     transform: scale(1.02);
     box-shadow: 0 3px 3px $color-shadow;
   }
+  &:active {
+    transform: scale(1.01);
+    box-shadow: 0 1px 1px $color-shadow;
+  }
 
   & p {
     overflow: hidden;
@@ -42,15 +46,22 @@
 }
 
 .total {
-  color: red;
   text-decoration: line-through;
 
   &-discount {
     font-size: $font-medium;
+    color: $color-secondary;
   }
 }
 
 .header {
   display: flex;
   align-items: center;
+}
+
+.active {
+  background-color: $color-base-light-very;
+
+  transform: scale(1.01);
+  box-shadow: 0 2px 2px $color-shadow;
 }

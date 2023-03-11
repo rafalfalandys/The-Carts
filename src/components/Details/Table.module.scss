@@ -1,0 +1,78 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+table {
+  width: 100%;
+  font-size: $font-medium;
+  border-spacing: 0;
+}
+
+tbody {
+  tr:nth-child(odd) {
+    background-color: $color-base-light-very;
+  }
+}
+
+th {
+  text-align: end;
+  padding-bottom: 1rem;
+  writing-mode: vertical-rl;
+  transform-origin: bottom center;
+  transform: rotate(-45deg) translateY(-1rem);
+  max-height: 12rem;
+
+  &.no,
+  .name {
+    position: relative;
+
+    & span {
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+    }
+  }
+  &.name {
+    position: relative;
+
+    & span {
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+    }
+  }
+}
+
+td {
+  padding: 0.7rem 0;
+  padding-left: 1rem;
+  text-align: center;
+
+  &:last-child {
+    background-color: none;
+  }
+}
+
+.column {
+  width: 6.5rem;
+}
+
+.no {
+  width: 4rem;
+  text-align: center;
+  writing-mode: horizontal-tb;
+  transform: rotate(0);
+  text-align: center;
+}
+
+.name {
+  width: auto;
+  writing-mode: horizontal-tb;
+  transform: rotate(0);
+  text-align: left;
+}
+
+.total {
+  font-weight: 700;
+  font-size: $font-large;
+  padding: 1rem 0;
+}

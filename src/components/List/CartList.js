@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CartCard from "./CartCard";
 import classes from "./CartList.module.scss";
+import NewCartBtn from "./NewCartBtn";
 
 function CartList(props) {
   const [carts, setCarts] = useState(props.carts);
@@ -16,7 +17,12 @@ function CartList(props) {
     />
   ));
 
-  return <ul className={classes.list}>{cartsList}</ul>;
+  return (
+    <ul className={classes.list}>
+      <NewCartBtn />
+      {cartsList}
+    </ul>
+  );
 }
 
 export default CartList;

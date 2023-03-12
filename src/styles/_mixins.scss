@@ -22,3 +22,34 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin hover-style {
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 3px 3px $color-shadow;
+  }
+  &:active {
+    transform: scale(1.01);
+    box-shadow: 0 1px 1px $color-shadow;
+  }
+}
+
+@mixin card-cart {
+  background-color: $color-white;
+  padding: 1rem;
+  border-radius: $border-radius;
+  cursor: pointer;
+  height: 7.5rem;
+  min-width: 17rem;
+
+  transition: all 0.3s;
+
+  @include hover-style();
+}
+
+@mixin active-card {
+  background-color: $color-base-light-very;
+
+  transform: scale(1.01);
+  box-shadow: 0 2px 2px $color-shadow;
+}

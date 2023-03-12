@@ -1,7 +1,9 @@
+import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import classes from "./CartDetails.module.scss";
 
 import Chart from "./Chart";
+import NewCartForm from "./Form/NewCartForm";
 import Products from "./Products";
 
 function CartDetails(props) {
@@ -10,8 +12,13 @@ function CartDetails(props) {
 
   return (
     <div className={classes.details}>
-      <Chart cart={cart} />
-      <Products cart={cart} />
+      {params.cartId !== "new-cart" && (
+        <Fragment>
+          <Products cart={cart} />
+          <Chart cart={cart} />
+        </Fragment>
+      )}
+      {params.cartId === "new-cart" && <NewCartForm />}
     </div>
   );
 }

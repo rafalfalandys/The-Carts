@@ -1,5 +1,7 @@
 // function generating max value of a chart. To avoid chart hitting maximum value
 export const createPriceRange = (prices) => {
+  if (!prices) return;
+
   const maxPrice = Math.max(...prices);
   const roundFactorDigits = [...(maxPrice + "")].map((_, i) =>
     i === 0 ? "1" : "0"

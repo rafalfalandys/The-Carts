@@ -3,32 +3,41 @@ import { createPriceRange } from "../../helper";
 import classes from "./Chart.module.scss";
 
 function Chart(props) {
-  const allPrices = props.cart.products.map((prod) => prod.price);
-  const maxRange = createPriceRange(allPrices)[1];
+  const drawChart = () => {
+    if (!props.cart) return;
+    const allPrices = props.cart.products.map((prod) => prod.price);
+    const maxRange = createPriceRange(allPrices)[1];
 
-  const originalPrices = props.cart.products.map((prod) => {
-    const moveValue = (20 / maxRange) * prod.price;
-    return (
-      <div
-        key={prod.id}
-        className={classes.dot}
-        style={{ transform: `translateY(-${moveValue}rem)` }}
-      ></div>
-    );
-  });
+    const originalPrices = props.cart.products.map((prod) => {
+      const moveValue = (20 / maxRange) * prod.price;
+      return (
+        <div
+          key={prod.id}
+          className={classes.dot}
+          style={{ transform: `translateY(-${moveValue}rem)` }}
+        ></div>
+      );
+    });
 
-  const discountedPrices = props.cart.products.map((prod) => {
-    const discountedPrice =
-      (prod.price / 100) * (100 - prod.discountPercentage);
-    const moveValue = (20 / maxRange) * discountedPrice;
-    return (
-      <div
-        key={prod.id}
-        className={`${classes.dot} ${classes["dot--discounted"]}`}
-        style={{ transform: `translateY(-${moveValue}rem)` }}
-      ></div>
-    );
-  });
+    const discountedPrices = props.cart.products.map((prod) => {
+      const discountedPrice =
+        (prod.price / 100) * (100 - prod.discountPercentage);
+      const moveValue = (20 / maxRange) * discountedPrice;
+      return (
+        <div
+          key={prod.id}
+          className={`${classes.dot} ${classes["dot--discounted"]}`}
+          style={{ transform: `translateY(-${moveValue}rem)` }}
+        ></div>
+      );
+    });
+
+    return [originalPrices, discountedPrices, maxRange];
+  };
+
+  const [originalPrices, discountedPrices, maxRange] = props.cart
+    ? drawChart()
+    : [null, null, null];
 
   return (
     <div className={classes.wrapper}>

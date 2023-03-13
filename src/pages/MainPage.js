@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 import classes from "./MainPage.module.scss";
 
@@ -9,8 +9,12 @@ function MainPage() {
   const loaderData = useLoaderData();
   const [carts, setCarts] = useState(loaderData);
 
+  useEffect(() => {
+    const localCarts = JSON.parse(localStorage.getItem("new-carts"));
+    if (localCarts) setCarts((prev) => [...prev, ...localCarts]);
+  }, []);
+
   const onAddCartHandler = useCallback((cart) => {
-    console.log(cart);
     setCarts((prev) => [...prev, cart]);
   }, []);
 

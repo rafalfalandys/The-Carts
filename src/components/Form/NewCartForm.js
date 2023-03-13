@@ -81,6 +81,10 @@ function NewCartForm() {
 
 export default NewCartForm;
 
+////////////////////////////////////////////
+//////////// ACTION FUNCTIONS //////////////
+////////////////////////////////////////////
+
 const buildProductsArr = async (data) => {
   const discountPercentages = data.getAll("discount-percentage");
   const discountPrices = data.getAll("discount-price");
@@ -140,6 +144,10 @@ export const action = async ({ request }) => {
     if (!res.ok) throw new Error("Could not create new cart!");
 
     // const data = await res.json();
+
+    const curStorage = JSON.parse(localStorage.getItem("new-carts"));
+    const newCarts = curStorage ? [...curStorage, cartObj] : [cartObj];
+    localStorage.setItem("new-carts", JSON.stringify(newCarts));
 
     return cartObj;
   } catch (error) {

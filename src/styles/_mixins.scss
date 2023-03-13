@@ -10,6 +10,11 @@
   justify-content: center;
 }
 
+@mixin details-placeholder {
+  text-align: center;
+  margin: 7rem auto;
+}
+
 @mixin details-header {
   display: flex;
   font-size: $font-medium;

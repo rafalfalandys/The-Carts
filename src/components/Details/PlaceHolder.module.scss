@@ -2,10 +2,9 @@
 @import "../../styles/mixins";
 
 .placeholder {
-  text-align: center;
-  margin-top: 10rem;
+  @include details-placeholder;
 
-  & p {
+  & h2 {
     width: 70%;
     margin: auto;
   }

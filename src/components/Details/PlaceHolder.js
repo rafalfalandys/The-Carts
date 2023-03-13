@@ -2,12 +2,12 @@ import classes from "./PlaceHolder.module.scss";
 
 function PlaceHolder() {
   return (
-    <h2 className={classes.placeholder}>
-      <p>
+    <div className={classes.placeholder}>
+      <h2>
         Click on one of the carts to display its details and price chart, or
         start adding new cart to display the new cart form.
-      </p>
-    </h2>
+      </h2>
+    </div>
   );
 }
 

@@ -13,10 +13,13 @@ function CartDetails() {
 
   return (
     <div className={classes.details}>
-      <Fragment>
-        <Products cart={cart} />
-        <Chart cart={cart} />
-      </Fragment>
+      {cart && (
+        <Fragment>
+          <Products cart={cart} />
+          <Chart cart={cart} />
+        </Fragment>
+      )}
+      {!cart && <h1 className={classes.placeholder}>There is no such cart.</h1>}
     </div>
   );
 }

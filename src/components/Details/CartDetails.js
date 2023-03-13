@@ -7,15 +7,19 @@ import Products from "./Products";
 
 function CartDetails() {
   const params = useParams();
-  const { carts } = useOutletContext();
+  const { carts, onDeleteCart } = useOutletContext();
 
   const cart = carts?.filter((cart) => cart.id === +params.cartId)[0];
+
+  const deleteCartHandler = (id) => {
+    onDeleteCart(id);
+  };
 
   return (
     <div className={classes.details}>
       {cart && (
         <Fragment>
-          <Products cart={cart} />
+          <Products cart={cart} onDeleteCart={deleteCartHandler} />
           <Chart cart={cart} />
         </Fragment>
       )}

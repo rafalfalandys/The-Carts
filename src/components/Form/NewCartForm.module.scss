@@ -1,0 +1,68 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: $grid-gap;
+}
+
+.header {
+  font-size: $font-large;
+  display: flex;
+  gap: 1rem;
+  margin: $grid-gap;
+
+  & input {
+    font-size: inherit;
+    width: 3rem;
+  }
+}
+
+.metadata {
+  background: none;
+  border: none;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  border-radius: 10rem;
+  gap: 1rem;
+  border: none;
+  font-size: $font-medium;
+
+  & ion-icon {
+    font-size: $font-large;
+  }
+
+  @include hover-style;
+
+  &--add-prod {
+    font-size: $font-small;
+    padding: 0.5rem;
+    border: 1px solid $color-grey;
+  }
+
+  &--submit {
+    background-color: $color-base-light;
+    padding: 1.5rem 3rem;
+    margin: 2rem;
+    font-size: $font-large;
+    font-weight: 700;
+  }
+
+  &--save {
+    background-color: $color-grey-light;
+    padding: 1.5rem 3rem;
+    margin: 2rem;
+    font-size: $font-large;
+  }
+}
+
+.buttons {
+  &__submit {
+    display: flex;
+  }
+}

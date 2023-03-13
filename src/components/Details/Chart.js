@@ -41,41 +41,32 @@ function Chart(props) {
 
   return (
     <div className={classes.wrapper}>
-      <h2 className={classes.placeholder}>
-        {!props.cart && (
-          <p>Click on one of the carts to display the products price chart</p>
-        )}
-      </h2>
-      {props.cart && (
-        <Fragment>
-          <header className={classes.header}>
-            <ion-icon name="cart-outline" size="large" />
-            <h2> &nbsp;Cart {props.cart.id} - Prices Chart</h2>
-          </header>
-          <div className={classes.chart}>
-            <div
-              className={`${classes.line} ${classes["line-vertical"]}`}
-            ></div>
-            <div
-              className={`${classes.line} ${classes["line-horizontal"]}`}
-            ></div>
-            <h2 className={classes["price-text"]}>Price</h2>
-            <h2
-              className={`${classes["price__value"]} ${classes["price__value--min"]}`}
-            >
-              0
-            </h2>
-            <h2
-              className={`${classes["price__value"]} ${classes["price__value--max"]}`}
-            >
-              {maxRange}
-            </h2>
+      <Fragment>
+        <header className={classes.header}>
+          <ion-icon name="cart-outline" size="large" />
+          <h2> &nbsp;Cart {props.cart.id} - Prices Chart</h2>
+        </header>
+        <div className={classes.chart}>
+          <div className={`${classes.line} ${classes["line-vertical"]}`}></div>
+          <div
+            className={`${classes.line} ${classes["line-horizontal"]}`}
+          ></div>
+          <h2 className={classes["price-text"]}>Price</h2>
+          <h2
+            className={`${classes["price__value"]} ${classes["price__value--min"]}`}
+          >
+            0
+          </h2>
+          <h2
+            className={`${classes["price__value"]} ${classes["price__value--max"]}`}
+          >
+            {maxRange}
+          </h2>
 
-            <div className={classes.dots}>{originalPrices}</div>
-            <div className={classes.dots}>{discountedPrices}</div>
-          </div>
-        </Fragment>
-      )}
+          <div className={classes.dots}>{originalPrices}</div>
+          <div className={classes.dots}>{discountedPrices}</div>
+        </div>
+      </Fragment>
     </div>
   );
 }

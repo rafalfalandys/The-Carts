@@ -1,12 +1,9 @@
-import { useState } from "react";
 import CartCard from "./CartCard";
 import classes from "./CartList.module.scss";
 import NewCartBtn from "./NewCartBtn";
 
-function CartList(props) {
-  const [carts, setCarts] = useState(props.carts);
-
-  const cartsList = carts.map((cart) => (
+function CartList({ carts }) {
+  const cartsList = carts?.map((cart, i) => (
     <CartCard
       key={cart.id}
       id={cart.id}

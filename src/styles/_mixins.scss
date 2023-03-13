@@ -10,12 +10,6 @@
   justify-content: center;
 }
 
-@mixin details-placeholder {
-  text-align: center;
-  display: flex;
-  align-items: center;
-}
-
 @mixin details-header {
   display: flex;
   font-size: $font-medium;
@@ -24,6 +18,9 @@
 }
 
 @mixin hover-style {
+  cursor: pointer;
+  transition: all 0.3s;
+
   &:hover {
     transform: scale(1.02);
     box-shadow: 0 3px 3px $color-shadow;

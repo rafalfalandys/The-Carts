@@ -1,0 +1,12 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.placeholder {
+  text-align: center;
+  margin-top: 10rem;
+
+  & p {
+    width: 70%;
+    margin: auto;
+  }
+}

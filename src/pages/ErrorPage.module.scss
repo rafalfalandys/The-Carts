@@ -1,0 +1,12 @@
+@import "../styles/variables";
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & p {
+    font-size: $font-medium;
+    margin-top: 3rem;
+  }
+}

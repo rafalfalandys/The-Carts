@@ -1,9 +1,10 @@
-@import "../../../styles/variables";
-@import "../../../styles/mixins";
+@import "../../styles/variables";
+@import "../../styles/mixins";
 
 .wrapper {
   display: flex;
   align-items: stretch;
+  margin-bottom: $grid-gap;
 }
 
 .form {
@@ -35,16 +36,24 @@
   }
 }
 
-.buttons {
-  margin: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1.5rem;
+.readonly {
+  background: none;
+  border: none;
 }
 
 .btn {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin: 0 0.5rem;
+  font-size: $font-medium;
+
+  & span {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+  }
 
   & ion-icon {
     font-size: 3rem;

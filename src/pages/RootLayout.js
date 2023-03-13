@@ -1,6 +1,5 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
-import Main from "../components/Main";
+import { Link, Outlet } from "react-router-dom";
 import classes from "./RootLayout.module.scss";
 
 function RootLayout() {
@@ -14,7 +13,7 @@ function RootLayout() {
           &nbsp; The Carts!
         </Link>
       </header>
-      <Main />
+      <Outlet />
     </Fragment>
   );
 }

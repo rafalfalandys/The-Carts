@@ -1,18 +1,14 @@
 import { Fragment } from "react";
-import { useNavigate } from "react-router";
 import classes from "./Products.module.scss";
 import Table from "./Table";
 
 function Products(props) {
-  const navigate = useNavigate();
-
   const deleteCartHandler = () => {
     const areYouSure = window.confirm(
       `Are you sure you want to delete cart ${props.cart.id}?`
     );
     if (areYouSure) {
       props.onDeleteCart(props.cart.id);
-      navigate("/");
     }
   };
 

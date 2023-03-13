@@ -1,13 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
-import MainPage, {
-  loader as cartsLoader,
-  action as removeCart,
-} from "./pages/MainPage";
+import MainPage, { loader as cartsLoader } from "./pages/MainPage";
 import NewCartForm, {
   action as createCart,
 } from "./components/Form/NewCartForm";
-import CartDetails from "./components/Details/CartDetails";
+import CartDetails, {
+  action as removeCart,
+} from "./components/Details/CartDetails";
 import ErrorPage from "./pages/ErrorPage";
 import PlaceHolder from "./components/Details/PlaceHolder";
 
@@ -21,11 +20,21 @@ const router = createBrowserRouter([
         element: <MainPage />,
         errorElement: <ErrorPage />,
         loader: cartsLoader,
-        action: removeCart,
+        // action: removeCart,
         children: [
           { index: true, element: <PlaceHolder /> },
-          { path: ":cartId", element: <CartDetails /> },
-          { path: "new-cart", element: <NewCartForm />, action: createCart },
+          {
+            path: ":cartId",
+            element: <CartDetails />,
+            errorElement: <ErrorPage />,
+            action: removeCart,
+          },
+          {
+            path: "new-cart",
+            element: <NewCartForm />,
+            errorElement: <ErrorPage />,
+            action: createCart,
+          },
         ],
       },
     ],

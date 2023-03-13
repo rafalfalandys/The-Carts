@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   Form,
   useActionData,
+  useNavigate,
   useNavigation,
   useOutletContext,
 } from "react-router-dom";
@@ -12,11 +13,15 @@ function NewCartForm() {
   const [productsIDs, setProductsIDs] = useState([]);
   const actionData = useActionData();
   const navigation = useNavigation();
+  const navigate = useNavigate();
   const { onAddCartHandler, carts } = useOutletContext();
 
   useEffect(() => {
-    if (actionData) onAddCartHandler(actionData);
-  }, [actionData, onAddCartHandler]);
+    if (actionData) {
+      onAddCartHandler(actionData);
+      navigate(`/${actionData.id}`);
+    }
+  }, [actionData, onAddCartHandler, navigate]);
 
   const isUploading =
     navigation.state === "submitting" || navigation.state === "loading";
@@ -111,6 +116,8 @@ export const action = async ({ request }) => {
     const reqData = await request.formData();
     const productsArr = await buildProductsArr(reqData);
 
+    const id = +reqData.get("cart-id");
+
     const discountedTotal = productsArr
       .map((prod) => prod.discountPrice)
       .reduce((acc, cur) => acc + cur)
@@ -126,7 +133,7 @@ export const action = async ({ request }) => {
       .reduce((acc, cur) => acc + cur);
 
     const cartObj = {
-      id: +reqData.get("cart-id"),
+      id,
       discountedTotal,
       products: productsArr,
       total,
@@ -142,8 +149,6 @@ export const action = async ({ request }) => {
     });
 
     if (!res.ok) throw new Error("Could not create new cart!");
-
-    // const data = await res.json();
 
     const curStorage = JSON.parse(localStorage.getItem("new-carts"));
     const newCarts = curStorage ? [...curStorage, cartObj] : [cartObj];

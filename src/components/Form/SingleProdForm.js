@@ -7,10 +7,10 @@ function SingleProdForm(props) {
   const priceRef = useRef();
   const discountRef = useRef();
 
-  const [name, setName] = useState("");
-  const [qty, setQty] = useState("");
-  const [price, setPrice] = useState("");
-  const [discount, setDiscount] = useState("");
+  const [name, setName] = useState("Some product");
+  const [qty, setQty] = useState("1");
+  const [price, setPrice] = useState("19");
+  const [discount, setDiscount] = useState("10");
 
   // change input handlers
   const changeNameHandler = () => setName(nameRef.current.value);
@@ -44,8 +44,8 @@ function SingleProdForm(props) {
           ref={nameRef}
           onChange={changeNameHandler}
           className={classes.name}
-          //   value={name}
-          defaultValue="test name"
+          value={name}
+          // defaultValue="test name"
           required
         ></input>
 
@@ -55,8 +55,8 @@ function SingleProdForm(props) {
           type="number"
           ref={qtyRef}
           onChange={changeQtyHandler}
-          //   value={qty}
-          defaultValue="2"
+          value={qty}
+          // defaultValue="2"
           step="1"
           max="99"
           required
@@ -67,8 +67,8 @@ function SingleProdForm(props) {
           type="number"
           ref={priceRef}
           onChange={changePriceHandler}
-          //   value={price}
-          defaultValue="12"
+          value={price}
+          // defaultValue="12"
           required
         ></input>
         <label>Discount (%)</label>
@@ -79,8 +79,8 @@ function SingleProdForm(props) {
           max={100}
           ref={discountRef}
           onChange={changeDiscountHandler}
-          //   value={discount}
-          defaultValue="10"
+          value={discount}
+          // defaultValue="10"
           required
         ></input>
         <div></div>

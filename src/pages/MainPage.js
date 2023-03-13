@@ -71,6 +71,10 @@ export const action = async ({ request }) => {
   try {
     const data = await request.formData();
     const id = +data.get("id");
+
+    const res = await fetch(URL + `${id}`, { method: "DELETE" });
+    if (!res.ok) throw new Error("I had some problems with deleting the cart");
+
     const localCarts = JSON.parse(localStorage.getItem("new-carts"));
     const localRemovedCarts = JSON.parse(localStorage.getItem("removed-carts"));
 
@@ -96,5 +100,6 @@ export const action = async ({ request }) => {
     return null;
   } catch (error) {
     console.log(error);
+    throw new Error(error.message);
   }
 };

@@ -48,5 +48,7 @@
 }
 
 .active {
-  @include active-card;
+  transform: scale(1.02);
+  box-shadow: 0 3px 3px $color-shadow;
+  outline: 2px solid $color-grey-light;
 }

@@ -5,7 +5,7 @@ function Table(props) {
     const promoPrice = Math.round(
       (prod.price / 100) * (100 - prod.discountPercentage)
     );
-    const discount = prod.price - promoPrice;
+    const discount = (prod.price - promoPrice) * prod.quantity;
 
     return (
       <tr key={prod.id}>
@@ -23,7 +23,7 @@ function Table(props) {
   });
 
   return (
-    <table>
+    <table className={classes.table}>
       <thead>
         <tr>
           <th className={classes.no}>
@@ -32,12 +32,12 @@ function Table(props) {
           <th className={classes.name}>
             <span>Product</span>
           </th>
-          <th className={classes.column}>Quantity</th>
+          <th className={classes.column}>Qty</th>
           <th className={classes.column}>Original Price</th>
-          <th className={classes.column}>Discount</th>
-          <th className={classes.column}>Discounted Unit Price</th>
-          <th className={classes.column}>Total price</th>
-          <th className={classes.column}>Discount</th>
+          <th className={classes.column}>Disc.</th>
+          <th className={classes.column}>Disc. Unit Price</th>
+          <th className={classes.column}>Total</th>
+          <th className={classes.column}>Total Discount</th>
           <th className={classes.column}>Final Price</th>
         </tr>
       </thead>

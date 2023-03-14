@@ -49,13 +49,6 @@
   @include hover-style();
 }
 
-@mixin active-card {
-  background-color: $color-base-light-very;
-
-  transform: scale(1.01);
-  box-shadow: 0 2px 2px $color-shadow;
-}
-
 @mixin btn {
   display: flex;
   align-items: center;

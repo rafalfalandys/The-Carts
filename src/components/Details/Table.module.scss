@@ -1,50 +1,28 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
-table {
+.table {
   width: 100%;
-  font-size: $font-medium;
+  font-size: $font-small;
+  margin-top: $grid-gap;
   border-spacing: 0;
 }
 
 tbody {
   tr:nth-child(odd) {
-    background-color: $color-base-light-very;
+    background-color: $color-grey-light-very;
   }
 }
 
 th {
-  text-align: end;
-  padding-bottom: 1rem;
-  writing-mode: vertical-rl;
-  transform-origin: bottom center;
-  transform: rotate(-45deg) translateY(-1rem);
+  text-align: center;
+  font-size: $font-small;
+  font-weight: 600;
   max-height: 12rem;
-
-  &.no,
-  .name {
-    position: relative;
-
-    & span {
-      position: absolute;
-      bottom: 0;
-      left: 1rem;
-    }
-  }
-  &.name {
-    position: relative;
-
-    & span {
-      position: absolute;
-      bottom: 0;
-      left: 1rem;
-    }
-  }
 }
 
 td {
   padding: 0.7rem 0;
-  padding-left: 1rem;
   text-align: center;
 
   &:last-child {
@@ -53,7 +31,7 @@ td {
 }
 
 .column {
-  width: 6.5rem;
+  width: 6rem;
 }
 
 .no {
@@ -75,4 +53,5 @@ td {
   font-weight: 700;
   font-size: $font-large;
   padding: 1rem 0;
+  width: 10rem;
 }

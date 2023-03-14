@@ -8,6 +8,7 @@
 
 .header {
   @include details-header;
+  margin-bottom: $grid-gap;
 }
 
 .chart {

@@ -29,11 +29,16 @@ function ReChart({ cart }) {
   const chart = (
     <ResponsiveContainer>
       <LineChart data={chartData}>
-        <Line type="linear" dataKey="price" stroke="#505050" strokeWidth="2" />
+        <Line
+          type="linear"
+          dataKey="price"
+          stroke="rgb(100, 100 ,100)"
+          strokeWidth="2"
+        />
         <Line
           type="linear"
           dataKey="discPrice"
-          stroke="#394FF0"
+          stroke="rgb(140, 200, 0)"
           strokeWidth="2"
         />
         <CartesianGrid stroke="#ccc" />

@@ -6,8 +6,25 @@
   flex-direction: column;
   justify-content: stretch;
   gap: $grid-gap;
+  position: relative;
 }
 
 .placeholder {
   @include details-placeholder;
+}
+
+.btn {
+  @include btn;
+  @include hover-style;
+  padding: 0.5rem;
+  border: 1px solid $color-grey;
+  font-size: $font-small;
+
+  position: absolute;
+  top: $grid-gap;
+  right: calc(2 * $grid-gap);
+
+  & ion-icon {
+    font-size: $font-large;
+  }
 }

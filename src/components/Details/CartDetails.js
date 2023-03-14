@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   useFetcher,
   useNavigate,
@@ -16,11 +16,22 @@ function CartDetails() {
   const { carts, onDeleteCart } = useOutletContext();
   const fetcher = useFetcher();
   const navigate = useNavigate();
+  const [noCartMsg, setNoCartMsg] = useState("");
 
   const cart = carts?.filter((cart) => cart.id === +params.cartId)[0];
 
-  const deleteCartHandler = (id) =>
-    fetcher.submit({ id }, { method: "delete" });
+  const deleteCartHandler = () => {
+    const areYouSure = window.confirm(
+      `Are you sure you want to delete cart ${cart.id}?`
+    );
+    if (areYouSure) fetcher.submit({ id: cart.id }, { method: "delete" });
+  };
+
+  // I delay this message because it blinked after deleting the cart
+  if (!cart)
+    setTimeout(() => {
+      setNoCartMsg("There is no such cart.");
+    }, 1000);
 
   useEffect(() => {
     const id = fetcher.data;
@@ -34,11 +45,15 @@ function CartDetails() {
     <div className={classes.details}>
       {cart && (
         <Fragment>
-          <Products cart={cart} onDeleteCart={deleteCartHandler} />
+          <div className={classes.btn} onClick={deleteCartHandler}>
+            <span>Delete Cart&nbsp;</span>
+            <ion-icon name="close-circle-outline" />
+          </div>
           <Chart cart={cart} />
+          <Products cart={cart} />
         </Fragment>
       )}
-      {!cart && <h1 className={classes.placeholder}>There is no such cart.</h1>}
+      {!cart && <h1 className={classes.placeholder}>{noCartMsg}</h1>}
     </div>
   );
 }

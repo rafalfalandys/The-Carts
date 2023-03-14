@@ -1,4 +1,4 @@
-// function generating max value of a chart. To avoid chart hitting maximum value
+// function generating max value of a chart.
 export const createPriceRange = (prices) => {
   if (!prices) return;
 
@@ -12,6 +12,7 @@ export const createPriceRange = (prices) => {
 
   const roundFactor = +roundFactorDigits.join("");
 
-  const maxRange = Math.ceil((maxPrice * 1.4) / roundFactor) * roundFactor;
+  // the .ceil, and 1.2 factor is there to avoid chart hitting maximum value
+  const maxRange = Math.ceil((maxPrice * 1.2) / roundFactor) * roundFactor;
   return [0, maxRange];
 };

@@ -1,8 +1,12 @@
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { createPriceRange } from "../../helper";
 import classes from "./Chart.module.scss";
 
 function Chart(props) {
+  const chartRef = useRef();
+
+  if (chartRef.current) console.log(chartRef?.current.offsetWidth);
+
   const drawChart = () => {
     if (!props.cart) return;
     const allPrices = props.cart.products.map((prod) => prod.price);
@@ -46,7 +50,7 @@ function Chart(props) {
           <ion-icon name="cart-outline" size="large" />
           <h2> &nbsp;Cart {props.cart.id} - Prices Chart</h2>
         </header>
-        <div className={classes.chart}>
+        <div className={classes.chart} ref={chartRef}>
           <div className={`${classes.line} ${classes["line-vertical"]}`}></div>
           <div
             className={`${classes.line} ${classes["line-horizontal"]}`}
@@ -55,13 +59,22 @@ function Chart(props) {
           <h2
             className={`${classes["price__value"]} ${classes["price__value--min"]}`}
           >
-            0
+            $0
           </h2>
           <h2
             className={`${classes["price__value"]} ${classes["price__value--max"]}`}
           >
-            {maxRange}
+            ${maxRange}
           </h2>
+
+          {/* <svg className={classes.polyline}>
+            <polyline
+              points="0,0 20,20 40,40 1000,200"
+              stroke="black"
+              fill="none"
+              pathLength="20"
+            />
+          </svg> */}
 
           <div className={classes.dots}>{originalPrices}</div>
           <div className={classes.dots}>{discountedPrices}</div>

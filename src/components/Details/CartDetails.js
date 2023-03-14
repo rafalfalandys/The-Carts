@@ -7,8 +7,6 @@ import {
 } from "react-router-dom";
 import { URL } from "../../config";
 import classes from "./CartDetails.module.scss";
-
-import Chart from "./Chart";
 import Products from "./Products";
 import ReChart from "./ReChart";
 
@@ -50,7 +48,6 @@ function CartDetails() {
             <span>Delete Cart&nbsp;</span>
             <ion-icon name="close-circle-outline" />
           </div>
-          {/* <Chart cart={cart} /> */}
           <ReChart cart={cart} />
           <Products cart={cart} />
         </Fragment>

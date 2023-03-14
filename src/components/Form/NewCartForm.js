@@ -101,7 +101,7 @@ const buildProductsArr = async (data) => {
   return titles.map((title, i) => {
     return {
       discountPercentage: +discountPercentages[i],
-      discountPrice: +discountPrices[i],
+      discountedPrice: +discountPrices[i],
       id: i,
       price: +prices[i],
       quantity: +quantities[i],
@@ -119,7 +119,7 @@ export const action = async ({ request }) => {
     const id = +reqData.get("cart-id");
 
     const discountedTotal = productsArr
-      .map((prod) => prod.discountPrice)
+      .map((prod) => prod.discountedPrice)
       .reduce((acc, cur) => acc + cur)
       .toFixed(0);
 
@@ -154,8 +154,10 @@ export const action = async ({ request }) => {
     const newCarts = curStorage ? [...curStorage, cartObj] : [cartObj];
     localStorage.setItem("new-carts", JSON.stringify(newCarts));
 
+    console.log(cartObj);
     return cartObj;
   } catch (error) {
+    console.log(error);
     throw new Error(error);
   }
 };

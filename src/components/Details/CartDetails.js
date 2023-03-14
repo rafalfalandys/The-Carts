@@ -10,6 +10,7 @@ import classes from "./CartDetails.module.scss";
 
 import Chart from "./Chart";
 import Products from "./Products";
+import ReChart from "./ReChart";
 
 function CartDetails() {
   const params = useParams();
@@ -49,7 +50,8 @@ function CartDetails() {
             <span>Delete Cart&nbsp;</span>
             <ion-icon name="close-circle-outline" />
           </div>
-          <Chart cart={cart} />
+          {/* <Chart cart={cart} /> */}
+          <ReChart cart={cart} />
           <Products cart={cart} />
         </Fragment>
       )}

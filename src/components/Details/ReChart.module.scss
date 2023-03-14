@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.wrapper {
+  @include details-wrapper;
+  height: 40rem;
+}
+
+.header {
+  @include details-header;
+}
+
+.chart {
+  //   background-color: $color-grey-light-very;
+  width: 100%;
+  height: 80%;
+}

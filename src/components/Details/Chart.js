@@ -69,7 +69,7 @@ function Chart(props) {
 
           {/* <svg className={classes.polyline}>
             <polyline
-              points="0,0 20,20 40,40 1000,200"
+              points="0,0 20,20 40,40 1000,200"s
               stroke="black"
               fill="none"
               pathLength="20"

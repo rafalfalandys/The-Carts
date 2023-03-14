@@ -45,7 +45,7 @@ function SingleProdForm(props) {
           onChange={changeNameHandler}
           className={classes.name}
           value={name}
-          // defaultValue="test name"
+          maxLength="30"
           required
         ></input>
 
@@ -56,9 +56,8 @@ function SingleProdForm(props) {
           ref={qtyRef}
           onChange={changeQtyHandler}
           value={qty}
-          // defaultValue="2"
           step="1"
-          max="99"
+          max="20"
           required
         ></input>
         <label>Original Unit Price</label>
@@ -68,7 +67,7 @@ function SingleProdForm(props) {
           ref={priceRef}
           onChange={changePriceHandler}
           value={price}
-          // defaultValue="12"
+          max="5000"
           required
         ></input>
         <label>Discount (%)</label>
@@ -76,11 +75,10 @@ function SingleProdForm(props) {
           name="discount-percentage"
           type="number"
           min="0"
-          max={100}
           ref={discountRef}
           onChange={changeDiscountHandler}
           value={discount}
-          // defaultValue="10"
+          max="100"
           required
         ></input>
         <div></div>

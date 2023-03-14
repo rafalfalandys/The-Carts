@@ -4,9 +4,10 @@ import classes from "./MainPage.module.scss";
 
 import CartList from "../components/List/CartList";
 import { URL } from "../config";
+import { Cart } from "../types";
 
-function MainPage() {
-  const loaderData = useLoaderData();
+const MainPage: React.FC = () => {
+  const loaderData = useLoaderData() as Cart[];
   const [carts, setCarts] = useState(loaderData);
 
   // handling local storage
@@ -48,7 +49,7 @@ function MainPage() {
       </main>
     </Fragment>
   );
-}
+};
 
 export default MainPage;
 

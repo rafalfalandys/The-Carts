@@ -2,7 +2,25 @@ import { Fragment } from "react";
 import classes from "./Products.module.scss";
 import Table from "./Table";
 
-function Products(props) {
+type Cart = {
+  discountedTotal: number;
+  id: number;
+  products: {
+    discountedPercentage: number;
+    discountedPrice: number;
+    id: number;
+    price: number;
+    quantity: number;
+    title: string;
+    total: number;
+  }[];
+  total: number;
+  totalProducts: 5;
+  totalQuantity: number;
+  userId: number;
+};
+
+const Products: React.FC<{ cart: Cart }> = (props) => {
   return (
     <div className={classes.products}>
       <Fragment>
@@ -14,6 +32,6 @@ function Products(props) {
       </Fragment>
     </div>
   );
-}
+};
 
 export default Products;

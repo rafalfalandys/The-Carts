@@ -21,8 +21,6 @@ function ReChart({ cart }) {
     };
   });
 
-  console.log(cart.products);
-
   const allPrices = cart.products.map((prod) => prod.price);
   const priceRange = createPriceRange(allPrices);
 

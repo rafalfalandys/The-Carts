@@ -25,10 +25,12 @@ export const createPriceRange: (prices: number[]) => number[] = (prices) => {
 // ) => { newCarts: Cart[]; removedCarts: number[] } = (newCarts, removedCarts) => {};
 
 export const getLocalData = () => {
-  const localCartsJson = localStorage.getItem("new-carts") || "";
-  const localCarts = JSON.parse(localCartsJson);
+  const localCartsJson = localStorage.getItem("new-carts");
+  const localCarts: Cart[] = localCartsJson ? JSON.parse(localCartsJson) : [];
   const localRemovedCartsJson = localStorage.getItem("removed-carts") || "";
-  const localRemovedCarts = JSON.parse(localRemovedCartsJson);
+  const localRemovedCarts: number[] = localRemovedCartsJson
+    ? JSON.parse(localRemovedCartsJson)
+    : [];
 
   return { localCarts, localRemovedCarts } as {
     localCarts: Cart[];

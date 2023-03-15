@@ -1,40 +1,41 @@
 import { useRef, useState } from "react";
 import classes from "./SingleProdForm.module.scss";
+import { MinusCircleIcon } from "@heroicons/react/24/outline";
 
 const SingleProdForm: React.FC<{
   id: number;
   removeProdHandler: (prodId: number) => void;
 }> = (props) => {
-  const nameRef = useRef<HTMLInputElement>();
-  const qtyRef = useRef<HTMLInputElement>();
-  const priceRef = useRef<HTMLInputElement>();
-  const discountRef = useRef<HTMLInputElement>();
+  const nameRef = useRef<HTMLInputElement>(null);
+  const qtyRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
+  const discountRef = useRef<HTMLInputElement>(null);
 
   const [name, setName] = useState("Some product");
-  const [qty, setQty] = useState("1");
-  const [price, setPrice] = useState("19");
-  const [discount, setDiscount] = useState("10");
+  const [qty, setQty] = useState(1);
+  const [price, setPrice] = useState(19);
+  const [discount, setDiscount] = useState(10);
 
   // change input handlers
   const changeNameHandler = () => {
     if (nameRef.current) setName(nameRef.current.value);
   };
   const changeQtyHandler = () => {
-    if (qtyRef.current) setQty(qtyRef.current.value);
+    if (qtyRef.current) setQty(+qtyRef.current.value);
   };
   const changePriceHandler = () => {
-    if (priceRef.current) setPrice(priceRef.current.value);
+    if (priceRef.current) setPrice(+priceRef.current.value);
   };
   const changeDiscountHandler = () => {
-    if (discountRef.current) setDiscount(discountRef.current.value);
+    if (discountRef.current) setDiscount(+discountRef.current.value);
   };
 
   // functions calculating rest values
   const countDiscUnitPrice = () =>
-    ((+price / 100) * (100 - +discount)).toFixed(2);
+    ((price / 100) * (100 - discount)).toFixed(2);
 
   const countDiscountAmount = () =>
-    ((+price - countDiscUnitPrice(price, discount)) * qty).toFixed(2);
+    ((price - +countDiscUnitPrice()) * qty).toFixed(2);
 
   const countOriginalTotal = () => (price * qty).toFixed(2);
 
@@ -56,7 +57,7 @@ const SingleProdForm: React.FC<{
           onChange={changeNameHandler}
           className={classes.name}
           value={name}
-          maxLength="30"
+          maxLength={30}
           required
         ></input>
 
@@ -68,7 +69,8 @@ const SingleProdForm: React.FC<{
           onChange={changeQtyHandler}
           value={qty}
           step="1"
-          max="20"
+          min={1}
+          max={20}
           required
         ></input>
         <label>Original Unit Price</label>
@@ -125,7 +127,8 @@ const SingleProdForm: React.FC<{
       </div>
 
       <div className={classes.btn}>
-        <ion-icon name="remove-circle-outline" onClick={onRemoveBtnHandler} />
+        {/* <ion-icon name="remove-circle-outline" onClick={onRemoveBtnHandler} /> */}
+        <MinusCircleIcon onClick={onRemoveBtnHandler} />
       </div>
     </div>
   );

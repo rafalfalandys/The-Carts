@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  ActionFunction,
   Form,
   useActionData,
   useNavigate,
@@ -67,7 +68,6 @@ const NewCartForm: React.FC = () => {
         className={`${classes["btn--add-prod"]} ${classes.btn}`}
         onClick={onAddProdHandler}
       >
-        {/* <ion-icon name="add-circle-outline" /> */}
         <PlusCircleIcon />
         <span>Add Product</span>
       </div>
@@ -96,7 +96,7 @@ export default NewCartForm;
 //////////// ACTION FUNCTIONS //////////////
 ////////////////////////////////////////////
 
-const buildProductsArr = async (data) => {
+const buildProductsArr: (data: FormData) => Product[] = (data) => {
   const discountPercentages = data.getAll("discount-percentage");
   const discountPrices = data.getAll("discount-price");
   const prices = data.getAll("price");
@@ -104,7 +104,7 @@ const buildProductsArr = async (data) => {
   const titles = data.getAll("title");
   const totals = data.getAll("total");
 
-  return titles.map((title: string, i: number) => {
+  return titles.map((title, i) => {
     return {
       discountPercentage: +discountPercentages[i],
       discountedPrice: +discountPrices[i],
@@ -114,15 +114,15 @@ const buildProductsArr = async (data) => {
       title: title,
       total: +totals[i],
     };
-  });
+  }) as Product[];
 };
 
-export const action = async ({ request }) => {
+export const action: ActionFunction = async ({ request }) => {
   try {
     const reqData = await request.formData();
     const productsArr = await buildProductsArr(reqData);
 
-    const id = +reqData.get("cart-id");
+    const id = +reqData.get("cart-id")!;
 
     const discountedTotal = productsArr
       .map((prod: Product) => prod.discountedPrice)
@@ -161,7 +161,6 @@ export const action = async ({ request }) => {
     const newCarts = curStorage ? [...curStorage, cartObj] : [cartObj];
     localStorage.setItem("new-carts", JSON.stringify(newCarts));
 
-    console.log(cartObj);
     return cartObj;
   } catch (error) {
     console.log(error);

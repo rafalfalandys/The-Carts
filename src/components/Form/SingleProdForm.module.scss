@@ -69,4 +69,8 @@
   &:active {
     transform: scale(1.05);
   }
+
+  & svg {
+    height: $font-large-very;
+  }
 }

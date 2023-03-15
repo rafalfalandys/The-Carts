@@ -14,6 +14,7 @@ import Products from "./Products";
 import ReChart from "./ReChart";
 
 import { XCircleIcon } from "@heroicons/react/24/outline";
+import { getLocalData } from "../../helper";
 
 const CartDetails: React.FC = () => {
   const params = useParams();
@@ -81,16 +82,11 @@ export const action: ActionFunction = async ({ request }) => {
     const id = +data.get("id")!;
 
     if (id <= 20) {
-      const res = await fetch(URL + `${id}ss`, { method: "DELETE" });
+      const res = await fetch(URL + `${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Could not delete the cart");
     }
 
-    const localCartsJson = localStorage.getItem("new-carts");
-    const localCarts = localCartsJson ? JSON.parse(localCartsJson) : [];
-    const localRemovedCartsJson = localStorage.getItem("removed-carts");
-    const localRemovedCarts = localRemovedCartsJson
-      ? JSON.parse(localRemovedCartsJson)
-      : [];
+    const { localCarts, localRemovedCarts } = getLocalData();
 
     // case 1 = deleted cart is part of local storage
     if (

@@ -2,8 +2,8 @@ import classes from "./ErrorPage.module.scss";
 import { Fragment } from "react";
 import { useRouteError } from "react-router-dom";
 
-function ErrorPage() {
-  const errorObj = useRouteError();
+const ErrorPage: React.FC = () => {
+  const errorObj: any = useRouteError();
 
   console.log(errorObj.message);
 
@@ -18,6 +18,6 @@ function ErrorPage() {
       </main>
     </Fragment>
   );
-}
+};
 
 export default ErrorPage;

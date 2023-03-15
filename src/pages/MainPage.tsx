@@ -5,6 +5,7 @@ import classes from "./MainPage.module.scss";
 import CartList from "../components/List/CartList";
 import { URL } from "../config";
 import { Cart } from "../types";
+import { getLocalData } from "../helper";
 
 const MainPage: React.FC = () => {
   const loaderData = useLoaderData() as Cart[];
@@ -12,8 +13,7 @@ const MainPage: React.FC = () => {
 
   // handling local storage
   useEffect(() => {
-    const localCarts = JSON.parse(localStorage.getItem("new-carts"));
-    const localRemovedCarts = JSON.parse(localStorage.getItem("removed-carts"));
+    const { localCarts, localRemovedCarts } = getLocalData();
 
     // adding local carts
     if (localCarts && localCarts.length !== 0)
@@ -31,11 +31,11 @@ const MainPage: React.FC = () => {
     }
   }, []);
 
-  const onAddCartHandler = useCallback((cart) => {
+  const onAddCartHandler = useCallback((cart: Cart) => {
     setCarts((prev) => [...prev, cart]);
   }, []);
 
-  const deleteCart = useCallback((id) => {
+  const deleteCart = useCallback((id: number) => {
     setCarts((prev) => prev.filter((cart) => cart.id !== id));
   }, []);
 
@@ -58,10 +58,14 @@ export default MainPage;
 /////////////////////////////////////////////
 
 export const loader = async () => {
-  const res = await fetch(URL);
-  if (!res.ok) throw new Error("Could not fetch carts data");
+  try {
+    const res = await fetch(URL);
+    if (!res.ok) throw new Error("Could not fetch carts data");
 
-  const data = await res.json();
+    const data = await res.json();
 
-  return data.carts;
+    return data.carts as Cart[];
+  } catch (error) {
+    throw Error(`${error}`);
+  }
 };

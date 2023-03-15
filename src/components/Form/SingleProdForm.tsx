@@ -81,18 +81,19 @@ const SingleProdForm: React.FC<{
           ref={priceRef}
           onChange={changePriceHandler}
           value={price}
-          max="5000"
+          min={0}
+          max={5000}
           required
         ></input>
         <label>Discount (%)</label>
         <input
           name="discount-percentage"
           type="number"
-          min="0"
           ref={discountRef}
           onChange={changeDiscountHandler}
           value={discount}
-          max="100"
+          min={0}
+          max={100}
           required
         ></input>
         <div></div>

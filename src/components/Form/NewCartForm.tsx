@@ -108,7 +108,7 @@ const buildProductsArr: (data: FormData) => Product[] = (data) => {
   return titles.map((title, i) => {
     return {
       discountPercentage: +discountPercentages[i],
-      discountedPrice: +discountPrices[i],
+      discountedPrice: +discountPrices[i] * +quantities[i],
       id: i,
       price: +prices[i],
       quantity: +quantities[i],
@@ -125,28 +125,26 @@ export const action: ActionFunction = async ({ request }) => {
 
     const id = +reqData.get("cart-id")!;
 
-    const discountedTotal = productsArr
+    const discountedTotal = +productsArr
       .map((prod: Product) => prod.discountedPrice)
-      .reduce((acc: number, cur: number) => acc + cur)
-      .toFixed(0);
+      .reduce((acc: number, cur: number) => acc + cur);
 
     const total = productsArr
       .map((prod: Product) => prod.price)
-      .reduce((acc: number, cur: number) => acc + cur)
-      .toFixed(0);
+      .reduce((acc: number, cur: number) => acc + cur);
 
     const totalQuantity = productsArr
       .map((prod: Product) => prod.quantity)
       .reduce((acc: number, cur: number) => acc + cur);
 
-    const cartObj = {
+    const cartObj: Cart = {
       id,
       discountedTotal,
       products: productsArr,
       total,
       totalProducts: productsArr.length,
       totalQuantity,
-      userId: 97,
+      userId: 77,
     };
 
     const res = await fetch("https://dummyjson.com/carts/add", {

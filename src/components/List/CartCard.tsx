@@ -29,12 +29,12 @@ const CartCard: React.FC<{
         </header>
         <p>{props.totalQuantity} items</p>
         <p>
-          <strong>${discount}</strong> discount
+          <strong>${discount.toFixed(0)}</strong> discount
         </p>
         <div className={classes.price}>
-          <h3 className={classes.total}>${props.total}</h3>
+          <h3 className={classes.total}>${props.total.toFixed(0)}</h3>
           <h3 className={classes["total-discount"]}>
-            ${props.discountedTotal}
+            ${props.discountedTotal.toFixed(0)}
           </h3>
         </div>
       </Link>

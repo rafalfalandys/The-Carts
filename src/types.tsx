@@ -13,7 +13,7 @@ export type Cart = {
   id: number;
   products: Product[];
   total: number;
-  totalProducts: 5;
+  totalProducts: number;
   totalQuantity: number;
   userId: number;
 };

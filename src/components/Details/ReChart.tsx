@@ -10,6 +10,7 @@ import {
   YAxis,
 } from "recharts";
 import classes from "./ReChart.module.scss";
+
 import { createPriceRange } from "../../helper";
 import { Cart } from "../../types";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";

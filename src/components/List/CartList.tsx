@@ -1,8 +1,10 @@
+import { Cart } from "../../types";
 import CartCard from "./CartCard";
 import classes from "./CartList.module.scss";
+
 import NewCartBtn from "./NewCartBtn";
 
-function CartList({ carts }) {
+const CartList: React.FC<{ carts: Cart[] }> = ({ carts }) => {
   const cartsList = carts?.map((cart, i) => (
     <CartCard
       key={cart.id}
@@ -20,6 +22,6 @@ function CartList({ carts }) {
       <NewCartBtn />
     </ul>
   );
-}
+};
 
 export default CartList;

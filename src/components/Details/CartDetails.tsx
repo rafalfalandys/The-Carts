@@ -6,9 +6,10 @@ import {
   useOutletContext,
   useParams,
 } from "react-router-dom";
+import classes from "./CartDetails.module.scss";
+
 import { URL } from "../../config";
 import { Cart } from "../../types";
-import classes from "./CartDetails.module.scss";
 import Products from "./Products";
 import ReChart from "./ReChart";
 

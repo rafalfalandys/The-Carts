@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import classes from "./Products.module.scss";
-import Table from "./Table";
 
+import Table from "./Table";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { Cart } from "../../types";
 

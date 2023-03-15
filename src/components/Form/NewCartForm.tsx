@@ -7,8 +7,9 @@ import {
   useNavigation,
   useOutletContext,
 } from "react-router-dom";
-import { Cart, Product } from "../../types";
 import classes from "./NewCartForm.module.scss";
+
+import { Cart, Product } from "../../types";
 import SingleProdForm from "./SingleProdForm";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 

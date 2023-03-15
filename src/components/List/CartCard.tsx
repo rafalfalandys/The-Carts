@@ -1,11 +1,20 @@
 import { Link, useParams } from "react-router-dom";
 import classes from "./CartCard.module.scss";
 
-function CartCard(props) {
+import { Product } from "../../types";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+
+const CartCard: React.FC<{
+  id: number;
+  total: number;
+  discountedTotal: number;
+  products: Product[];
+  totalQuantity: number;
+}> = (props) => {
   const params = useParams();
   const discount = props.total - props.discountedTotal;
 
-  const isActive = +params.cartId === props.id;
+  const isActive = +params.cartId! === props.id;
 
   return (
     <li>
@@ -14,7 +23,8 @@ function CartCard(props) {
         className={`${classes.cart} ${isActive ? classes.active : ""}`}
       >
         <header className={classes.header}>
-          <ion-icon name="cart-outline" size="small" />
+          {/* <ion-icon name="cart-outline" size="small" /> */}
+          <ShoppingCartIcon />
           <h2> &nbsp;Cart {props.id}</h2>
         </header>
         <p>{props.totalQuantity} items</p>
@@ -30,6 +40,6 @@ function CartCard(props) {
       </Link>
     </li>
   );
-}
+};
 
 export default CartCard;

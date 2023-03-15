@@ -18,7 +18,7 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 const ReChart: React.FC<{ cart: Cart }> = ({ cart }) => {
   const chartData = cart.products.map((prod, i) => {
     return {
-      name: `Product ${i}`,
+      name: `Product ${i + 1}`,
       price: prod.price.toFixed(2),
       discPrice: (prod.discountedPrice / prod.quantity).toFixed(2),
     };

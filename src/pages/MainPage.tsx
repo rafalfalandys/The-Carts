@@ -6,7 +6,6 @@ import CartList from "../components/List/CartList";
 import { URL } from "../config";
 import { Cart } from "../types";
 import { getLocalData } from "../helper";
-import ErrorPage from "./ErrorPage";
 
 const MainPage: React.FC = () => {
   const loaderData = useLoaderData() as Cart[];

@@ -1,11 +1,14 @@
 import { useRef, useState } from "react";
 import classes from "./SingleProdForm.module.scss";
 
-function SingleProdForm(props) {
-  const nameRef = useRef();
-  const qtyRef = useRef();
-  const priceRef = useRef();
-  const discountRef = useRef();
+const SingleProdForm: React.FC<{
+  id: number;
+  removeProdHandler: (prodId: number) => void;
+}> = (props) => {
+  const nameRef = useRef<HTMLInputElement>();
+  const qtyRef = useRef<HTMLInputElement>();
+  const priceRef = useRef<HTMLInputElement>();
+  const discountRef = useRef<HTMLInputElement>();
 
   const [name, setName] = useState("Some product");
   const [qty, setQty] = useState("1");
@@ -13,17 +16,25 @@ function SingleProdForm(props) {
   const [discount, setDiscount] = useState("10");
 
   // change input handlers
-  const changeNameHandler = () => setName(nameRef.current.value);
-  const changeQtyHandler = () => setQty(qtyRef.current.value);
-  const changePriceHandler = () => setPrice(priceRef.current.value);
-  const changeDiscountHandler = () => setDiscount(discountRef.current.value);
+  const changeNameHandler = () => {
+    if (nameRef.current) setName(nameRef.current.value);
+  };
+  const changeQtyHandler = () => {
+    if (qtyRef.current) setQty(qtyRef.current.value);
+  };
+  const changePriceHandler = () => {
+    if (priceRef.current) setPrice(priceRef.current.value);
+  };
+  const changeDiscountHandler = () => {
+    if (discountRef.current) setDiscount(discountRef.current.value);
+  };
 
   // functions calculating rest values
   const countDiscUnitPrice = () =>
-    ((price / 100) * (100 - discount)).toFixed(2);
+    ((+price / 100) * (100 - +discount)).toFixed(2);
 
   const countDiscountAmount = () =>
-    ((price - countDiscUnitPrice(price, discount)) * qty).toFixed(2);
+    ((+price - countDiscUnitPrice(price, discount)) * qty).toFixed(2);
 
   const countOriginalTotal = () => (price * qty).toFixed(2);
 
@@ -118,6 +129,6 @@ function SingleProdForm(props) {
       </div>
     </div>
   );
-}
+};
 
 export default SingleProdForm;

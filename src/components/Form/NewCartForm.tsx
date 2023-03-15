@@ -6,15 +6,20 @@ import {
   useNavigation,
   useOutletContext,
 } from "react-router-dom";
+import { Cart, Product } from "../../types";
 import classes from "./NewCartForm.module.scss";
 import SingleProdForm from "./SingleProdForm";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
-function NewCartForm() {
-  const [productsIDs, setProductsIDs] = useState([]);
-  const actionData = useActionData();
+const NewCartForm: React.FC = () => {
+  const [productsIDs, setProductsIDs] = useState<number[]>([]);
+  const actionData = useActionData() as Cart;
   const navigation = useNavigation();
   const navigate = useNavigate();
-  const { onAddCartHandler, carts } = useOutletContext();
+  const { onAddCartHandler, carts } = useOutletContext() as {
+    carts: Cart[];
+    onAddCartHandler: (cart: Cart) => void;
+  };
 
   useEffect(() => {
     if (actionData) {
@@ -28,7 +33,7 @@ function NewCartForm() {
 
   const maxCartId = Math.max(...carts.map((cart) => cart.id));
 
-  const removeProd = (prodId) => {
+  const removeProd: (prodId: number) => void = (prodId) => {
     setProductsIDs((prev) => prev.filter((id) => id !== prodId));
   };
 
@@ -62,7 +67,8 @@ function NewCartForm() {
         className={`${classes["btn--add-prod"]} ${classes.btn}`}
         onClick={onAddProdHandler}
       >
-        <ion-icon name="add-circle-outline" />
+        {/* <ion-icon name="add-circle-outline" /> */}
+        <PlusCircleIcon />
         <span>Add Product</span>
       </div>
 
@@ -82,7 +88,7 @@ function NewCartForm() {
       )}
     </Form>
   );
-}
+};
 
 export default NewCartForm;
 
@@ -98,7 +104,7 @@ const buildProductsArr = async (data) => {
   const titles = data.getAll("title");
   const totals = data.getAll("total");
 
-  return titles.map((title, i) => {
+  return titles.map((title: string, i: number) => {
     return {
       discountPercentage: +discountPercentages[i],
       discountedPrice: +discountPrices[i],
@@ -119,18 +125,18 @@ export const action = async ({ request }) => {
     const id = +reqData.get("cart-id");
 
     const discountedTotal = productsArr
-      .map((prod) => prod.discountedPrice)
-      .reduce((acc, cur) => acc + cur)
+      .map((prod: Product) => prod.discountedPrice)
+      .reduce((acc: number, cur: number) => acc + cur)
       .toFixed(0);
 
     const total = productsArr
-      .map((prod) => prod.price)
-      .reduce((acc, cur) => acc + cur)
+      .map((prod: Product) => prod.price)
+      .reduce((acc: number, cur: number) => acc + cur)
       .toFixed(0);
 
     const totalQuantity = productsArr
-      .map((prod) => prod.quantity)
-      .reduce((acc, cur) => acc + cur);
+      .map((prod: Product) => prod.quantity)
+      .reduce((acc: number, cur: number) => acc + cur);
 
     const cartObj = {
       id,
@@ -150,7 +156,8 @@ export const action = async ({ request }) => {
 
     if (!res.ok) throw new Error("Could not create new cart!");
 
-    const curStorage = JSON.parse(localStorage.getItem("new-carts"));
+    const curStorageJson = localStorage.getItem("new-carts");
+    const curStorage = curStorageJson ? JSON.parse(curStorageJson) : "";
     const newCarts = curStorage ? [...curStorage, cartObj] : [cartObj];
     localStorage.setItem("new-carts", JSON.stringify(newCarts));
 
@@ -158,6 +165,6 @@ export const action = async ({ request }) => {
     return cartObj;
   } catch (error) {
     console.log(error);
-    throw new Error(error);
+    throw new Error(`${error}`);
   }
 };

@@ -1,6 +1,7 @@
+import { Cart } from "../../types";
 import classes from "./Table.module.scss";
 
-function Table(props) {
+const Table: React.FC<{ cart: Cart }> = (props) => {
   const productsList = props.cart.products.map((prod, i) => {
     const promoPrice = Math.round(
       (prod.price / 100) * (100 - prod.discountPercentage)
@@ -57,6 +58,6 @@ function Table(props) {
       </tbody>
     </table>
   );
-}
+};
 
 export default Table;

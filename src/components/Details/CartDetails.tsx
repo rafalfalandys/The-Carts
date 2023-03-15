@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import {
+  ActionFunction,
   useFetcher,
   useNavigate,
   useOutletContext,
@@ -10,9 +11,6 @@ import { Cart } from "../../types";
 import classes from "./CartDetails.module.scss";
 import Products from "./Products";
 import ReChart from "./ReChart";
-
-import { IonIcon } from "@ionic/react";
-import { closeCircleOutline } from "ionicons/icons";
 
 import { XCircleIcon } from "@heroicons/react/24/outline";
 
@@ -59,7 +57,7 @@ const CartDetails: React.FC = () => {
             <span>Delete Cart&nbsp;</span>
             {/* <IonIcon icon={closeCircleOutline} /> */}
             {/* <ion-icon name="close-circle-outline" /> */}
-            <XCircleIcon className={classes.icon} />
+            <XCircleIcon />
           </div>
           <ReChart cart={cart} />
           <Products cart={cart} />
@@ -76,21 +74,22 @@ export default CartDetails;
 /////// ACTION FUNCTION - delete cart ///////
 /////////////////////////////////////////////
 
-export const action = async ({ request }) => {
-  console.log(request);
+export const action: ActionFunction = async ({ request }) => {
   try {
     const data = await request.formData();
-    const id = +data.get("id");
+    const id = +data.get("id")!;
 
     if (id <= 20) {
-      const res = await fetch(URL + `${id}`, { method: "DELETE" });
+      const res = await fetch(URL + `${id}ss`, { method: "DELETE" });
       if (!res.ok) throw new Error("Could not delete the cart");
     }
 
-    const localCartsJson = localStorage.getItem("new-carts") || "";
-    const localCarts = JSON.parse(localCartsJson);
-    const localRemovedCartsJson = localStorage.getItem("removed-carts") || "";
-    const localRemovedCarts = JSON.parse(localRemovedCartsJson);
+    const localCartsJson = localStorage.getItem("new-carts");
+    const localCarts = localCartsJson ? JSON.parse(localCartsJson) : [];
+    const localRemovedCartsJson = localStorage.getItem("removed-carts");
+    const localRemovedCarts = localRemovedCartsJson
+      ? JSON.parse(localRemovedCartsJson)
+      : [];
 
     // case 1 = deleted cart is part of local storage
     if (
@@ -114,6 +113,6 @@ export const action = async ({ request }) => {
     return id;
   } catch (error) {
     console.log(error);
-    throw Error(error);
+    throw Error(`${error}`);
   }
 };

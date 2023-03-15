@@ -59,6 +59,10 @@
     margin: 2rem;
     font-size: $font-large;
   }
+
+  & svg {
+    height: $font-large;
+  }
 }
 
 .buttons {

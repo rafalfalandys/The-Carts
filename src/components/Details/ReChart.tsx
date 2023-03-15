@@ -11,8 +11,10 @@ import {
 } from "recharts";
 import classes from "./ReChart.module.scss";
 import { createPriceRange } from "../../helper";
+import { Cart } from "../../types";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
-function ReChart({ cart }) {
+const ReChart: React.FC<{ cart: Cart }> = ({ cart }) => {
   const chartData = cart.products.map((prod, i) => {
     return {
       name: `Product ${i}`,
@@ -56,13 +58,14 @@ function ReChart({ cart }) {
     <div className={classes.wrapper}>
       <Fragment>
         <header className={classes.header}>
-          <ion-icon name="cart-outline" size="large" />
+          {/* <ion-icon name="cart-outline" size="large" /> */}
+          <ShoppingCartIcon />
           <h2> &nbsp;Cart {cart.id} - Prices Chart</h2>
         </header>
         <div className={classes.chart}>{chart}</div>
       </Fragment>
     </div>
   );
-}
+};
 
 export default ReChart;

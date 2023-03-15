@@ -8,20 +8,8 @@
 
 .header {
   @include details-header;
+
+  & svg {
+    height: $font-large-very;
+  }
 }
-
-// .btn {
-//   @include btn;
-//   @include hover-style;
-//   padding: 0.5rem;
-//   border: 1px solid $color-grey;
-//   font-size: $font-small;
-
-//   position: absolute;
-//   top: $grid-gap;
-//   right: $grid-gap;
-
-//   & ion-icon {
-//     font-size: $font-large;
-//   }
-// }

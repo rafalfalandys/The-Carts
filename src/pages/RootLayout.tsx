@@ -10,7 +10,6 @@ function RootLayout() {
       <header className={classes["header__wrapper"]}>
         <Link to="/" className={classes.header}>
           <div className={classes.icon}>
-            {/* <ion-icon name="cart-outline" /> */}
             <ShoppingCartIcon />
           </div>
           &nbsp; The Carts!

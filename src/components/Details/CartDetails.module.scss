@@ -7,6 +7,10 @@
   justify-content: stretch;
   gap: $grid-gap;
   position: relative;
+
+  @media (max-width: $break-phone) {
+    margin-left: $grid-gap;
+  }
 }
 
 .placeholder {

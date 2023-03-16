@@ -10,6 +10,18 @@ const CartList: React.FC<{
   listVisibilityHandler: (isVisible: boolean) => void;
   isListVisible: boolean;
 }> = ({ carts, listVisibilityHandler, isListVisible }) => {
+  // click on cart thumbanil on phone:
+  const onClickCartHandler: (isVisible: boolean) => void = (isVisible) => {
+    if (window.innerWidth > 600)
+      window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
+    else window.scroll(0, 0);
+    listVisibilityHandler(isVisible);
+  };
+
+  const onListToggleHandler = () => {
+    listVisibilityHandler(!isListVisible);
+  };
+
   const cartsList = carts?.map((cart) => (
     <CartCard
       key={cart.id}
@@ -21,20 +33,11 @@ const CartList: React.FC<{
     />
   ));
 
-  const onListVisibilityChange: (isVisible: boolean | null) => void = (
-    isVisible = null
-  ) => {
-    // click on cart thumbanil on phone:
-    if (isVisible) listVisibilityHandler(isVisible);
-    // click on toggle list btn:
-    else listVisibilityHandler(!isListVisible);
-  };
-
   return (
     <ul className={`${classes.wrapper} ${isListVisible ? "" : classes.hidden}`}>
       <div
         className={classes.list}
-        onClick={onListVisibilityChange.bind(null, false)}
+        onClick={onClickCartHandler.bind(null, false)}
       >
         {cartsList}
         <NewCartBtn />
@@ -43,7 +46,7 @@ const CartList: React.FC<{
         className={`${classes["toggle-btn"]} ${
           isListVisible ? "" : classes.rotated
         }`}
-        onClick={onListVisibilityChange.bind(null, null)}
+        onClick={onListToggleHandler}
       >
         <ChevronLeftIcon />
       </div>

@@ -31,7 +31,7 @@ const SingleProdForm: React.FC<{
     if (discountRef.current) setDiscount(+discountRef.current.value);
   };
 
-  // functions calculating rest values
+  // calculations
   const countDiscUnitPrice = () =>
     ((price / 100) * (100 - discount)).toFixed(2);
 
@@ -45,7 +45,7 @@ const SingleProdForm: React.FC<{
     (100 - discount)
   ).toFixed(2);
 
-  const onRemoveBtnHandler = () => props.removeProdHandler(props.id);
+  const onRemoveProductHandler = () => props.removeProdHandler(props.id);
 
   return (
     <div className={classes.wrapper}>
@@ -129,8 +129,7 @@ const SingleProdForm: React.FC<{
       </div>
 
       <div className={classes.btn}>
-        {/* <ion-icon name="remove-circle-outline" onClick={onRemoveBtnHandler} /> */}
-        <MinusCircleIcon onClick={onRemoveBtnHandler} />
+        <MinusCircleIcon onClick={onRemoveProductHandler} />
       </div>
     </div>
   );

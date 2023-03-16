@@ -61,7 +61,7 @@
   outline: 2px solid $color-grey-light;
 
   @media (max-width: $break-phone) {
-    // outline have no radius no ios so i use border instead
+    // outline have no radius on ios so i use border instead
     outline: none;
     border: 2px solid $color-grey-light;
   }

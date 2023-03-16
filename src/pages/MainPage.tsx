@@ -12,15 +12,15 @@ const MainPage: React.FC = () => {
   const [carts, setCarts] = useState(loaderData);
   const [isListVisible, setIsListVisible] = useState(false);
 
-  // handling local storage
+  // handling local storage after loading the page
   useEffect(() => {
     const { localCarts, localRemovedCarts } = getLocalData();
 
-    // adding local carts
+    // adding local carts to the state
     if (localCarts && localCarts.length !== 0)
       setCarts((prev) => [...prev, ...localCarts]);
 
-    // removing carts
+    // removing carts from the state
     if (localRemovedCarts && localRemovedCarts.length !== 0) {
       setCarts((prev) =>
         prev.filter((cart) =>
@@ -32,11 +32,12 @@ const MainPage: React.FC = () => {
     }
   }, []);
 
+  // handling state
   const onAddCartHandler = useCallback((cart: Cart) => {
     setCarts((prev) => [...prev, cart]);
   }, []);
 
-  const deleteCart = useCallback((id: number) => {
+  const deleteCartHandler = useCallback((id: number) => {
     setCarts((prev) => prev.filter((cart) => cart.id !== id));
   }, []);
 
@@ -55,8 +56,9 @@ const MainPage: React.FC = () => {
         <Outlet
           context={{
             onAddCartHandler,
-            onDeleteCart: deleteCart,
+            onDeleteCart: deleteCartHandler,
             carts,
+            apiCartsNo: loaderData.length,
           }}
         />
         <div

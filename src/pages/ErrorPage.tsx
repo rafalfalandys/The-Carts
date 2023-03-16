@@ -9,6 +9,7 @@ const ErrorPage: React.FC = () => {
 
   let msg = `Something went wrong (${errorObj?.message})`;
 
+  // during development I was testing the app with many people. Sometimes they stored data in local storage, than that data was different, than one expected, and generating errors. I added button clearing storage for these people.
   const clearLocalStorageHandler = () => {
     localStorage.clear();
   };
@@ -25,7 +26,6 @@ const ErrorPage: React.FC = () => {
         <div className={classes.btn} onClick={clearLocalStorageHandler}>
           Clear Local Storage
         </div>
-        {/* <p>Click on the logo to go back to main page</p> */}
       </main>
     </Fragment>
   );

@@ -1,16 +1,17 @@
-import { Cart } from "../../types";
-import CartCard from "./CartCard";
 import classes from "./CartList.module.scss";
 
-import NewCartBtn from "./NewCartBtn";
+import { Cart } from "../../types";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+
+import CartCard from "./CartCard";
+import NewCartBtn from "./NewCartBtn";
 
 const CartList: React.FC<{
   carts: Cart[];
   listVisibilityHandler: (isVisible: boolean) => void;
   isListVisible: boolean;
 }> = ({ carts, listVisibilityHandler, isListVisible }) => {
-  // click on cart thumbanil on phone:
+  // click on cart thumbnail on phone:
   const onClickCartHandler: (isVisible: boolean) => void = (isVisible) => {
     if (window.innerWidth > 600)
       window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
@@ -18,6 +19,7 @@ const CartList: React.FC<{
     listVisibilityHandler(isVisible);
   };
 
+  // click handler of little arrow toggling the carts bar
   const onListToggleHandler = () => {
     listVisibilityHandler(!isListVisible);
   };

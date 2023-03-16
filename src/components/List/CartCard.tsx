@@ -14,6 +14,7 @@ const CartCard: React.FC<{
   const params = useParams();
   const discount = props.total - props.discountedTotal;
 
+  // checking if current card is the one being displayed in details to highlight it. I could have used navLink. But I have not.
   const isActive = +params.cartId! === props.id;
 
   return (
@@ -23,7 +24,6 @@ const CartCard: React.FC<{
         className={`${classes.cart} ${isActive ? classes.active : ""}`}
       >
         <header className={classes.header}>
-          {/* <ion-icon name="cart-outline" size="small" /> */}
           <ShoppingCartIcon />
           <h2> &nbsp;Cart {props.id}</h2>
         </header>

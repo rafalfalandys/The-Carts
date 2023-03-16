@@ -20,7 +20,6 @@ const router = createBrowserRouter([
         element: <MainPage />,
         errorElement: <ErrorPage />,
         loader: cartsLoader,
-        // action: removeCart,
         children: [
           { index: true, element: <PlaceHolder /> },
           {

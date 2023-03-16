@@ -10,17 +10,18 @@ import classes from "./CartDetails.module.scss";
 
 import { URL } from "../../config";
 import { Cart } from "../../types";
-import Products from "./Products";
-import ReChart from "./ReChart";
-
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import { getLocalData } from "../../helper";
 
+import Products from "./Products";
+import ReChart from "./ReChart";
+
 const CartDetails: React.FC = () => {
   const params = useParams();
-  const { carts, onDeleteCart } = useOutletContext() as {
+  const { carts, onDeleteCart, apiCartsNo } = useOutletContext() as {
     carts: Cart[];
     onDeleteCart: (id: number) => void;
+    apiCartsNo: number;
   };
   const fetcher = useFetcher();
   const navigate = useNavigate();
@@ -34,17 +35,22 @@ const CartDetails: React.FC = () => {
     const areYouSure = window.confirm(
       `Are you sure you want to delete cart ${cart.id}?`
     );
-    if (areYouSure) fetcher.submit({ id: `${cart.id}` }, { method: "delete" });
+    if (areYouSure)
+      fetcher.submit(
+        { id: `${cart.id}`, apiCartsNo: `${apiCartsNo}` },
+        { method: "delete" }
+      );
   };
 
   // I delay this message because it blinked after deleting the cart
   if (!cart)
     setTimeout(() => {
       setNoCartMsg("There is no such cart.");
-    }, 1000);
+    }, 1500);
 
+  // if delete request is ok, ID is passed and triggers deleting cart and navigates to home page
   useEffect(() => {
-    const id = fetcher.data;
+    const id: number = fetcher.data;
     if (id) {
       navigate("/");
       onDeleteCart(id);
@@ -78,12 +84,15 @@ export const action: ActionFunction = async ({ request }) => {
   try {
     const data = await request.formData();
     const id = +data.get("id")!;
+    const apiCartsNo = +data.get("apiCartsNo")!;
 
-    if (id <= 20) {
+    // checking if deleting cart comes from API or local storage. As api has some number of carts - what's above that number comes from local storage
+    if (id <= apiCartsNo) {
       const res = await fetch(URL + `${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Could not delete the cart");
     }
 
+    // retrieving local data
     const { localCarts, localRemovedCarts } = getLocalData();
 
     // case 1 = deleted cart is part of local storage
@@ -105,6 +114,8 @@ export const action: ActionFunction = async ({ request }) => {
         : [id];
       localStorage.setItem("removed-carts", JSON.stringify(newRemovedCarts));
     }
+
+    // once local data is managed, returning id triggers deleting the proper cart from our frontend
     return id;
   } catch (error) {
     console.log(error);

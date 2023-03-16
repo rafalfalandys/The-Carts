@@ -2,7 +2,10 @@ import { Cart } from "../../types";
 import classes from "./Table.module.scss";
 
 const Table: React.FC<{ cart: Cart }> = (props) => {
+  console.log(props.cart);
+  // building product elements
   const productsList = props.cart.products.map((prod, i) => {
+    // defining each product data
     const qty = prod.quantity;
     const originalPrice = prod.price.toFixed(2);
     const discountPercentage = prod.discountPercentage.toFixed(0);

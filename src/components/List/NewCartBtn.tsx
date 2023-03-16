@@ -8,7 +8,6 @@ function NewCartBtn() {
     <li className={classes.cart}>
       <Link to="new-cart">
         <div className={classes.icon}>
-          {/* <ion-icon name="add-circle-outline" /> */}
           <PlusCircleIcon />
         </div>
       </Link>

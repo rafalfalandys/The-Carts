@@ -24,7 +24,9 @@ const CartList: React.FC<{
   const onListVisibilityChange: (isVisible: boolean | null) => void = (
     isVisible = null
   ) => {
+    // click on cart thumbanil on phone:
     if (isVisible) listVisibilityHandler(isVisible);
+    // click on toggle list btn:
     else listVisibilityHandler(!isListVisible);
   };
 

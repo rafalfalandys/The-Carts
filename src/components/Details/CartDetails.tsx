@@ -57,8 +57,6 @@ const CartDetails: React.FC = () => {
         <Fragment>
           <div className={classes.btn} onClick={deleteCartHandler}>
             <span>Delete Cart&nbsp;</span>
-            {/* <IonIcon icon={closeCircleOutline} /> */}
-            {/* <ion-icon name="close-circle-outline" /> */}
             <XCircleIcon />
           </div>
           <ReChart cart={cart} />

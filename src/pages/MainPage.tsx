@@ -10,6 +10,7 @@ import { getLocalData } from "../helper";
 const MainPage: React.FC = () => {
   const loaderData = useLoaderData() as Cart[];
   const [carts, setCarts] = useState(loaderData);
+  const [isListVisible, setIsListVisible] = useState(false);
 
   // handling local storage
   useEffect(() => {
@@ -39,13 +40,30 @@ const MainPage: React.FC = () => {
     setCarts((prev) => prev.filter((cart) => cart.id !== id));
   }, []);
 
+  const listVisibilityHandler: (isVisible: boolean) => void = (isVisible) => {
+    setIsListVisible(isVisible);
+  };
+
   return (
     <Fragment>
       <main className={classes.main}>
-        <CartList carts={carts} />
-        <Outlet
-          context={{ onAddCartHandler, onDeleteCart: deleteCart, carts }}
+        <CartList
+          carts={carts}
+          listVisibilityHandler={listVisibilityHandler}
+          isListVisible={isListVisible}
         />
+        <Outlet
+          context={{
+            onAddCartHandler,
+            onDeleteCart: deleteCart,
+            carts,
+          }}
+        />
+        <div
+          className={`${classes.overlay} ${
+            isListVisible ? "" : classes.hidden
+          }`}
+        ></div>
       </main>
     </Fragment>
   );

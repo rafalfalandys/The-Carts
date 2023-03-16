@@ -1,5 +1,14 @@
 @import "../../styles/variables";
 
+.wrapper {
+  transition: all 0.5s;
+
+  @media (max-width: $break-phone) {
+    z-index: 1;
+    position: absolute;
+  }
+}
+
 .list {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -9,5 +18,49 @@
 
   @media (max-width: $break-tablet) {
     grid-template-columns: 1fr;
+  }
+
+  @media (max-width: $break-phone) {
+    grid-template-columns: 1fr 1fr;
+    background-color: $color-grey-light-very;
+    position: relative;
+    height: auto;
+    padding: 2rem $grid-gap;
+    margin: 0;
+
+    min-height: 100%;
+    height: calc(100vh - $height-header);
+    overflow-y: scroll;
+  }
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 30%;
+  right: -7rem;
+  background-color: $color-white;
+  // background-color: red;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 4px $color-shadow;
+  transition: all 0.5s;
+
+  & svg {
+    height: 75%;
+  }
+
+  &.rotated {
+    transform: rotate(180deg);
+    box-shadow: 0 -4px 4px $color-shadow;
+  }
+}
+
+.hidden {
+  @media (max-width: $break-phone) {
+    transform: translateX(-100%);
   }
 }

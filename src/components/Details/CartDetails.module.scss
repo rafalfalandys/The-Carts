@@ -24,7 +24,27 @@
   top: $grid-gap;
   right: calc(2 * $grid-gap);
 
-  & ion-icon {
-    font-size: $font-large;
+  @media (max-width: $break-phone) {
+    border: none;
+    padding: 0rem;
+
+    &:hover {
+      transform: scale(1);
+      box-shadow: none;
+    }
+  }
+
+  & span {
+    @media (max-width: $break-phone) {
+      display: none;
+    }
+  }
+
+  & svg {
+    height: 2rem;
+
+    @media (max-width: $break-phone) {
+      height: 5rem;
+    }
   }
 }

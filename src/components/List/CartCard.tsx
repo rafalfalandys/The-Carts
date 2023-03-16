@@ -17,7 +17,7 @@ const CartCard: React.FC<{
   const isActive = +params.cartId! === props.id;
 
   return (
-    <li>
+    <li className={classes.wrapper}>
       <Link
         to={`${props.id}`}
         className={`${classes.cart} ${isActive ? classes.active : ""}`}

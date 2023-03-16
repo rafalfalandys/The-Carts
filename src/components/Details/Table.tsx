@@ -24,9 +24,9 @@ const Table: React.FC<{ cart: Cart }> = (props) => {
         <td>{qty}</td>
         <td>${originalPrice}</td>
         <td>{discountPercentage}%</td>
-        <td>${discUnitPrice}</td>
+        <td className={classes.hidden}>${discUnitPrice}</td>
         <td>${total}</td>
-        <td>${totalDiscount}</td>
+        <td className={classes.hidden}>${totalDiscount}</td>
         <td>${finalPrice}</td>
       </tr>
     );
@@ -47,17 +47,21 @@ const Table: React.FC<{ cart: Cart }> = (props) => {
           <th className={classes.column}>Qty</th>
           <th className={classes.column}>Original Price</th>
           <th className={classes.column}>Disc.</th>
-          <th className={classes.column}>Disc. Unit Price</th>
+          <th className={`${classes.column} ${classes.hidden}`}>
+            Disc. Unit Price
+          </th>
           <th className={classes.column}>Total</th>
-          <th className={classes.column}>Total Discount</th>
+          <th className={`${classes.column} ${classes.hidden}`}>
+            Total Discount
+          </th>
           <th className={classes.column}>Final Price</th>
         </tr>
       </thead>
       <tbody>
         {productsList}
         <tr>
-          <td></td>
-          <td></td>
+          <td className={classes.hidden}></td>
+          <td className={classes.hidden}></td>
           <td></td>
           <td></td>
           <td></td>

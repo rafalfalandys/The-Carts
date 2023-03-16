@@ -55,4 +55,10 @@
   transform: scale(1.02);
   box-shadow: 0 3px 3px $color-shadow;
   outline: 2px solid $color-grey-light;
+
+  @media (max-width: $break-phone) {
+    // outline have no radius no ios so i use border instead
+    outline: none;
+    border: 2px solid $color-grey-light;
+  }
 }

@@ -61,13 +61,13 @@ const Table: React.FC<{ cart: Cart }> = (props) => {
         {productsList}
         <tr>
           <td className={classes.hidden}></td>
-          <td className={classes.hidden}></td>
+          <td></td>
           <td></td>
           <td></td>
           <td></td>
           <td>Total</td>
           <td>${props.cart.total.toFixed(2)}</td>
-          <td>
+          <td className={classes.hidden}>
             -${(props.cart.total - props.cart.discountedTotal).toFixed(2)}
           </td>
           <td className={classes.total}>{`$${discountedTotal}`}</td>

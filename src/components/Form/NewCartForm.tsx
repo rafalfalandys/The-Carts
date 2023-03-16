@@ -45,7 +45,7 @@ const NewCartForm: React.FC = () => {
     setProductsIDs((prev) => [...prev, newIndex]);
   };
 
-  const saveFormHandler = () => {};
+  // const saveFormHandler = () => {};
 
   const productsList = productsIDs.map((prodId) => (
     <SingleProdForm key={prodId} id={prodId} removeProdHandler={removeProd} />
@@ -75,12 +75,12 @@ const NewCartForm: React.FC = () => {
 
       {productsIDs.length !== 0 && (
         <div className={classes["buttons__submit"]}>
-          <div
+          {/* <div
             className={`${classes.btn} ${classes["btn--save"]}`}
             onClick={saveFormHandler}
           >
             Save for later
-          </div>
+          </div> */}
           <button className={`${classes.btn} ${classes["btn--submit"]}`}>
             {!isUploading && <span> Add Cart</span>}
             {isUploading && <span> Uploading...</span>}

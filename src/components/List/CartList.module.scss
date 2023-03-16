@@ -27,6 +27,7 @@
     height: auto;
     padding: 2rem $grid-gap;
     margin: 0;
+    max-width: calc(100vw - 8rem);
 
     min-height: 100%;
     height: calc(100vh - $height-header);

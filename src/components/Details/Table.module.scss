@@ -57,7 +57,7 @@ td {
 }
 
 .hidden {
-  @media (max-width: $break-phone) {
+  @media (max-width: $break-tablet) {
     display: none;
   }
 }

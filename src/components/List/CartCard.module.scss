@@ -58,11 +58,24 @@
 .active {
   transform: scale(1.02);
   box-shadow: 0 3px 3px $color-shadow;
-  outline: 2px solid $color-grey-light;
+  // outline: 2px solid $color-grey-light;
+  position: relative;
 
-  @media (max-width: $break-phone) {
-    // outline have no radius on ios so i use border instead
-    outline: none;
+  // I need to create this pseudo element, as outline does not work on ios...
+  &::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
     border: 2px solid $color-grey-light;
+    border-radius: calc($border-radius + 2px);
+  }
+
+  @media (max-width: $break-tablet) {
+    // outline have no radius on ios so i use border instead
+    // outline: none;
+    // border: 2px solid $color-grey-light;
   }
 }

@@ -16,10 +16,6 @@
   margin: 0 $grid-gap 0 $grid-gap;
   height: max-content;
 
-  @media (max-width: $break-tablet) {
-    grid-template-columns: 1fr;
-  }
-
   @media (max-width: $break-phone) {
     grid-template-columns: 1fr 1fr;
     background-color: $color-grey-light-very;
@@ -36,26 +32,30 @@
 }
 
 .toggle-btn {
-  position: absolute;
-  top: 30%;
-  right: -7rem;
-  background-color: $color-white;
-  height: 6rem;
-  width: 6rem;
-  border-radius: 10rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 4px $color-shadow;
-  transition: all 0.5s;
+  display: none;
 
-  & svg {
-    height: 75%;
-  }
+  @media (max-width: $break-phone) {
+    position: absolute;
+    top: 30%;
+    right: -7rem;
+    background-color: $color-white;
+    height: 6rem;
+    width: 6rem;
+    border-radius: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 4px $color-shadow;
+    transition: all 0.5s;
 
-  &.rotated {
-    transform: rotate(180deg);
-    box-shadow: 0 -4px 4px $color-shadow;
+    & svg {
+      height: 75%;
+    }
+
+    &.rotated {
+      transform: rotate(180deg);
+      box-shadow: 0 -4px 4px $color-shadow;
+    }
   }
 }
 

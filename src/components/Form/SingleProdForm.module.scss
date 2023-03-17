@@ -40,7 +40,7 @@
     font-weight: 400;
   }
 
-  @media (max-width: $break-phone) {
+  @media (max-width: $break-tablet) {
     grid-template-columns: 5rem 2.5rem 1fr 4rem 1fr 4rem;
   }
 }

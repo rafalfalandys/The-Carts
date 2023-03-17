@@ -5,7 +5,7 @@ function PlaceHolder() {
     <div className={classes.placeholder}>
       <h2>
         Click on one of the carts to display its details and price chart, or
-        start adding new cart to display the new cart form.
+        start adding a new cart to display the new cart form.
       </h2>
     </div>
   );

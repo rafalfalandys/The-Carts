@@ -49,8 +49,6 @@ const NewCartForm: React.FC = () => {
     setProductsIDs((prev) => [...prev, newIndex]);
   };
 
-  // const saveFormHandler = () => {};
-
   // checking whats the last cart, so the new one get proper name
   const maxCartId = Math.max(...carts.map((cart) => cart.id));
 
@@ -86,12 +84,6 @@ const NewCartForm: React.FC = () => {
 
       {productsIDs.length !== 0 && (
         <div className={classes["buttons__submit"]}>
-          {/* <div
-            className={`${classes.btn} ${classes["btn--save"]}`}
-            onClick={saveFormHandler}
-          >
-            Save for later
-          </div> */}
           <button className={`${classes.btn} ${classes["btn--submit"]}`}>
             {!isUploading && <span> Add Cart</span>}
             {isUploading && <span> Uploading...</span>}

@@ -50,8 +50,9 @@ const SingleProdForm: React.FC<{
   return (
     <div className={classes.wrapper}>
       <div className={classes.form}>
-        <label>Product Name</label>
+        <label htmlFor="title">Product Name</label>
         <input
+          id="title"
           name="title"
           type="text"
           ref={nameRef}
@@ -62,8 +63,9 @@ const SingleProdForm: React.FC<{
           required
         ></input>
 
-        <label>Quantity</label>
+        <label htmlFor="qty">Quantity</label>
         <input
+          id="qty"
           name="qty"
           type="number"
           ref={qtyRef}
@@ -74,8 +76,9 @@ const SingleProdForm: React.FC<{
           max={20}
           required
         ></input>
-        <label>Original Unit Price</label>
+        <label htmlFor="price">Original Unit Price</label>
         <input
+          id="price"
           name="price"
           type="number"
           ref={priceRef}
@@ -85,8 +88,9 @@ const SingleProdForm: React.FC<{
           max={5000}
           required
         ></input>
-        <label>Discount (%)</label>
+        <label htmlFor="discount-perc">Discount (%)</label>
         <input
+          id="discount-perc"
           name="discount-percentage"
           type="number"
           ref={discountRef}
@@ -98,33 +102,38 @@ const SingleProdForm: React.FC<{
         ></input>
         <div></div>
         <div></div>
-        <label>Discounted Unit Price ($) </label>
+        <label htmlFor="discount-price">Discounted Unit Price ($) </label>
         <input
+          id="discount-price"
           className={classes.readonly}
           name="discount-price"
           readOnly
           value={`${countDiscUnitPrice()}`}
         ></input>
-        <label>Total Discount ($): </label>
+        <label htmlFor="disc-dollars">Total Discount ($)</label>
         <input
+          id="disc-dollars"
           readOnly
           value={`${countDiscountAmount()}`}
           className={classes.readonly}
         ></input>
         <div></div>
         <div></div>
-        <label>Total Original Price ($) </label>
+        <label htmlFor="total">Total Original Price ($)</label>
         <input
+          id="total"
           name="total"
           readOnly
           value={`${countOriginalTotal()}`}
           className={classes.readonly}
         ></input>
-        <label>Total Discounted Price: </label>
+        <label htmlFor="disc-total">Total Discounted Price ($)</label>
         <input
+          id="disc-total"
+          type="text"
           className={`${classes.readonly} ${classes["total-price"]}`}
           readOnly
-          value={`$${countDiscountedTotal}`}
+          value={`${countDiscountedTotal}`}
         ></input>
       </div>
 

@@ -22,6 +22,7 @@ const CartCard: React.FC<{
       <Link
         to={`${props.id}`}
         className={`${classes.cart} ${isActive ? classes.active : ""}`}
+        aria-label="cart thumbnail"
       >
         <header className={classes.header}>
           <ShoppingCartIcon />

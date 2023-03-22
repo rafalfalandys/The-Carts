@@ -67,14 +67,14 @@ jest.mock("react-router-dom", () => ({
   useLoaderData: () => carts,
 }));
 
-test("check if click on add product btn ads it", async () => {
+test("carts list has proper amount of thumbnails", async () => {
   render(
     <MemoryRouter>
       <MainPage />
     </MemoryRouter>
   );
 
-  const links = await screen.findAllByRole("link", { name: /cart thumbnail/i });
+  const links = screen.getAllByRole("link", { name: /cart thumbnail/i });
 
   expect(links).toHaveLength(2);
 });
